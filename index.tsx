@@ -199,3 +199,120 @@ export default function Page() {
     </motion.div>
   )
 }
+'use client'
+import { motion } from 'framer-motion'
+
+export default function Page() {
+  const sectionVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const contentVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  return (
+    <div className="min-h-[200vh] bg-white">
+      {/* First Section - Fast */}
+      <motion.div 
+        className="flex items-center justify-between max-w-6xl mx-auto px-8 py-20 min-h-screen"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+      >
+        <motion.div className="w-1/2 space-y-4" variants={contentVariants}>
+          <h2 className="text-6xl font-bold text-black">Fast</h2>
+          <p className="text-xl text-gray-600">
+            You've never made a website this fast before.
+          </p>
+          <motion.button
+            className="px-6 py-2 bg-black text-white rounded-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Read More
+          </motion.button>
+        </motion.div>
+
+        <motion.div 
+          className="w-1/2"
+          variants={contentVariants}
+        >
+          <div className="bg-gray-100 w-full aspect-square rounded-xl" />
+        </motion.div>
+      </motion.div>
+
+      {/* Second Section - Easy */}
+      <motion.div 
+        className="flex items-center justify-between max-w-6xl mx-auto px-8 py-20 min-h-screen"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
+      >
+        <motion.div 
+          className="w-1/2"
+          variants={contentVariants}
+        >
+          <div className="bg-gray-100 w-full aspect-square rounded-xl" />
+        </motion.div>
+
+        <motion.div className="w-1/2 space-y-4 pl-16" variants={contentVariants}>
+          <h2 className="text-6xl font-bold text-black">Easy</h2>
+          <p className="text-xl text-gray-600">
+            Works like the canvas tools you're familiar with.
+          </p>
+          <motion.button
+            className="px-6 py-2 bg-black text-white rounded-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Read More
+          </motion.button>
+        </motion.div>
+      </motion.div>
+
+      {/* Footer */}
+      <motion.div 
+        className="fixed bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-white border-t"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <div className="flex gap-4">
+          <button className="px-4 py-2 bg-black text-white rounded-lg">Edit in Framer</button>
+          <button className="px-4 py-2 bg-white text-black border border-gray-200 rounded-lg">Login</button>
+          <button className="px-4 py-2 bg-white text-black border border-gray-200 rounded-lg">Sign Up</button>
+        </div>
+        <div>
+          <span className="text-sm text-gray-600">Made in Framer</span>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
